@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random number list </title>
+</head>
+<body>
+    <h1>Hello there!!</h1>
+    <ul>
+        <% for(let num of numList){ %>
+            <% if(num%2){ %>
+                <li>num <%= num %> :  is odd</li>
+            <% } else{%>
+                <li>num <%= num %>  : is even</li>
+            <% } %>
+        <% } %>
+    </ul>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias aliquid quam explicabo ad nostrum assumenda earum distinctio. Sed recusandae dolorum, vel quo beatae aliquam deleniti soluta vitae iure veniam quam?</p>
+</body>
+</html>
