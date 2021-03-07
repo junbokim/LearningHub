@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing <%= profile.username %> </title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 40vh;
+            justify-content: space-evenly;
+        }
+        textarea{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="/comments/<%- profile.id %>?_method=PATCH" method="POST">
+        <label for="editComment">Edit or Change your Personal Comment</label>
+        <textarea name="editComment" id="editComment" cols="30" rows="5"><%= profile.comment%></textarea>
+        <button type="submit">Change now!</button>
+    </form>
+</body>
+</html>

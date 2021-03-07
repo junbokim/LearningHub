@@ -11,12 +11,16 @@
 
     <ul>
         <% for(let c of comment) { %>
-            <li> <%= c.comment %> - <b><%= c.username %></b> </li>
+            <li style="font-size: 24px; width: 100vw;"> 
+                <%= c.comment %> - <span style="text-decoration:none; font-weight: 800; color: black; "><%= c.username %></span>
+                <a href="/profile/<%- c.id %>" style=" color: black;">visit the profile</a> 
+                <form action="/comments/<%= c.id%>?_method=DELETE" method="POST" style="display: inline-block;"> <button type="submit">delete</button></form>
+            </li>
         <% } %> 
     </ul>
 
     <H1>Create New Heading</H1>
-    <form action="http://localhost:3000/comments" method="POST">
+    <form action="/comments" method="POST">
         <section>
             <label for="username">User Name</label>
             <input type="text" name="username" id="username">
