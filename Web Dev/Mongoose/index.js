@@ -26,9 +26,29 @@ const movieSchema = new mongoose.Schema({
     genre: [String]
 });
 
+movieSchema.methods.greet = function(){
+    console.log("Hello");
+    console.log(`this is from ${this.title}`);
+}
+
+movieSchema.statics.superRating = function(){
+    return this.updateMany({}, {score:10})
+}
+
+movieSchema.virtual('description')
+    .get(function() {
+    return `${this.title} has a rating of ${this.rating}`}) 
+    .set(function(v) {
+        this.year = v.substr(0,v.indexOf(' '));
+        this.score = v.substring(v.indexOf(' ')+1); 
+    })
+
 const Movie =  mongoose.model('Movie', movieSchema); 
 
-const casper = new Movie({title:"Casper the Friendly Ghost", year:2001, score:9.6, rating:"PP", genre:["Family Friendly", "Super Natural", "Child Frindly"]});
-casper.save()
+const casper = new Movie({title:"Casper the Friendly Ghost", year:2001, score:9.6, rating:"PG", genre:["Family Friendly", "Super Natural", "Child Frindly"]});
+casper.greet();
+ 
 
-Movie.findOneAndUpdate({title:"Casper the Friendly Ghost"}, {score:-1}, {new:true, runValidators:true}).then(data => console.log(data))
+Movie.superRating().then(res => console.log(res));
+
+// Movie.findOneAndUpdate({title:"Casper the Friendly Ghost"}, {score:1}, {new:true, runValidators:true}).then(data => console.log(data))
